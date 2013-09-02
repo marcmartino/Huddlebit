@@ -8,7 +8,10 @@ var express = require('express')
   , user = require('./routes/user')
   , http = require('http')
   , path = require('path'),
-  bookshelf = require("./bookshelf/");
+  // bookshelf = require("./bookshelf/");
+  models = require("./models/"),
+  routes = require("./routes/"),
+  _ = require("./vendor/scoreunder");
 
 var app = express();
 
@@ -25,13 +28,32 @@ app.use(express.session());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.set("sendSuccess", returnMessage("success"));
+app.set("sendError", returnMessage("error"));
+function returnMessage(status) {
+	return function (data, res) {
+		var returnObj = {status: status, message: data};
+		if (res) {
+			res.json(returnObj);
+		}
+		return JSON.stringify(returnObj);
+	};
+}
+
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', routes.index);
+app.get('/', function(req, res){
+  res.render('index', { title: 'Huddlebit fuck yeah!' });
+});
 app.get('/users', user.list);
+app.get('/dbsync', function (req, res) {
+	res.send("attempted to set " + models.dbSync(models) +
+		". Check the console for further information");
+});
+routes(app);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
