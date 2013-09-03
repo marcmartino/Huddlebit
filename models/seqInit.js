@@ -18,7 +18,7 @@ module.exports = function (Sequelize, sequelize) {
 		id: {type: Sequelize.INTEGER},
 		name: {type: Sequelize.STRING, allowNull: false},
 		email: Sequelize.STRING,
-		url: Sequelize.STRING,
+		url: {type: Sequelize.STRING, allowNull: false},
 		tagline: Sequelize.STRING,
 		imageUrl: Sequelize.STRING,
 		description: Sequelize.TEXT,

@@ -1,5 +1,5 @@
 var _ = require("../../vendor/scoreunder");
-var uriStartPoint = "api/";
+var uriStartPoint = "/api/";
 var getObjectAttr = function (obj) {
 	return function (returnObj, searchAttr) {
 		var attrVal = obj[searchAttr];
@@ -20,13 +20,15 @@ var getRequiredAttrs = function (attrList, obj) {
 		return foundAttrs;
 	}
 }
-module.exports = _.compose(_.map(instansiateEndpoints),
+module.exports = function (app) {
+	return _.compose(_.map(instantiateEndpoints(app)),
 		_.map(genRestActions), _.map(genRestUris));
+};
 
 var genRestUris = function (routeMakeup) {
 	var restUris = {
 		create: {
-			uri: uriStartPoint + routeMakeup.noun.toLowerCase() + "/",
+			uri: uriStartPoint + routeMakeup.noun.toLowerCase() + "/create",
 			verb: "post"
 		},
 		read: {
@@ -41,7 +43,7 @@ var genRestUris = function (routeMakeup) {
 			uri: uriStartPoint + routeMakeup.noun.toLowerCase() + "/:id",
 			verb: "del"
 		},
-	}
+	};
 	return _.extend(routeMakeup, {"restData": restUris});
 };
 var modelName = function (lowerCaseName) {
@@ -70,7 +72,7 @@ var validateBody = function (validateObj, attrObj) {
 			}
 			return returnObj;
 		};
-	}(attrObj)), attrObj, modObj);
+	}(attrObj)), attrObj, validateObj);
 	return modifiedAttrs;
 }
 
@@ -97,5 +99,28 @@ var addCreateFunction = function (routeMakeup) {
 	}
 }
 
-var genRestActions = _.compose(addCreateFunction, addReadFunction,
-	addUpdateFunction, addDeleteFunction);
+var placeholderAction = function (req, res) {
+	app.get("sendError")("this action has not been defined yet!", res);
+}
+
+var genRestActions = function (routeMakeup) {
+	routeMakeup.restData.create.func 		= addCreateFunction(routeMakeup);
+	routeMakeup.restData.read.func 			= placeholderAction;
+	routeMakeup.restData.update.func 		= placeholderAction;
+	routeMakeup.restData['delete'].func = placeholderAction;
+
+	return routeMakeup;
+};//_.compose(addCreateFunction, addReadFunction,
+	//addUpdateFunction, addDeleteFunction);
+
+var instantiateEndpoints = function (app) {
+	return function (routeMakeup) {
+		_.forEach(function (verbData, verb) {
+			console.log(
+				[verbData.verb, verbData.uri, verbData.func.length].join(" "));
+			app[verbData.verb](verbData.uri, verbData.func);
+			console.log([routeMakeup.noun, verb, "instantiated"].join(" "));
+		}, routeMakeup.restData);
+		return routeMakeup;
+	};
+};

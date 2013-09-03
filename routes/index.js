@@ -31,5 +31,5 @@ module.exports = function(app){
 			message: "invalid email"}},
 		modify: {adminUserId: getCurrentUserId}
 	}];
-  scaffoldApi(routesMakeup);
+  scaffoldApi(app)(routesMakeup);
 };
