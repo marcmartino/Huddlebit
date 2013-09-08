@@ -17,6 +17,10 @@ var getCurrentUserId = function (adminUserId) {
 module.exports = function(app){	
 	var scaffoldApi = require("./routesScaffold");
 	var routesMakeup = [{
+		noun: "email",
+		required: ["email"],
+		optional: ["ip", "browser"]
+	},{
 		noun: "user",
 		required: ["email", "password"],
 		optional: ["name", "description"],

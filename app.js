@@ -50,8 +50,11 @@ if ('development' == app.get('env')) {
   app.set('port', process.env.PORT || 3000);
 }
 
-app.get('/', function(req, res){
+app.get('/', function (req, res){
   res.render('index', { title: 'Huddlebit fuck yeah!' });
+});
+app.get('/signup', function (req, res) {
+  res.render('email', {});
 });
 app.get('/users', user.list);
 app.get('/dbsync', function (req, res) {

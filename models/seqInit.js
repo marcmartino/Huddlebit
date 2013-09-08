@@ -6,6 +6,13 @@
 module.exports = function (Sequelize, sequelize) {
 	var models = {};
 
+	models.Email = sequelize.define('Email', {
+		id: {type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true},
+		email: {type: Sequelize.STRING, allowNull: false},
+		ip: Sequelize.STRING,
+		browser: Sequelize.STRING
+	});
+
 	models.User = sequelize.define('User', {
 		id: {type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true},
 		name: {type: Sequelize.STRING, allowNull: false},

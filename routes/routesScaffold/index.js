@@ -90,6 +90,7 @@ var addCreateFunction = function (routeMakeup, app) {
 		if (requiredAttrs) {
 			finalAttrs = _.extend(optionalAttrs, requiredAttrs);
 			console.log("noun: " + modelName(routeMakeup.noun));
+			console.log(finalAttrs);
 			app.get("models")[modelName(routeMakeup.noun)].build(finalAttrs)
 				.save().success(function (newItem) {
 					var newDataValues = newItem.dataValues;
