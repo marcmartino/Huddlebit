@@ -11,14 +11,15 @@ var express = require('express')
   // bookshelf = require("./bookshelf/");
   models = require("./models/"),
   routes = require("./routes/"),
-  _ = require("./vendor/scoreunder");
+  _ = require("./vendor/scoreunder"),
+  hbs = require('hbs');
 
 var app = express();
 
 // all environments
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 80);
 app.set('views', __dirname + '/views');
-app.set('view engine', 'jade');
+app.set('view engine', 'hbs');
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
@@ -28,6 +29,8 @@ app.use(express.session());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 app.set("models", models);
+
+hbs.registerPartials(__dirname + '/views/partials');
 
 app.set("sendSuccess", returnMessage("success"));
 app.set("sendError", returnMessage("error"));
@@ -44,6 +47,7 @@ function returnMessage(status) {
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
+  app.set('port', process.env.PORT || 3000);
 }
 
 app.get('/', function(req, res){
