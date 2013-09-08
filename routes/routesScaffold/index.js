@@ -94,10 +94,7 @@ var addCreateFunction = function (routeMakeup, app) {
 				.save().success(function (newItem) {
 					var newDataValues = newItem.dataValues;
 					app.get("sendSuccess")({id: newDataValues.id}, res);
-				}).error(function (err) {
-					console.log(err);
-					app.get("sendError")("error saving see console for more info", res);
-				});
+				}).error(dbErrorResponse(app, res, routeMakeup, "saving"));
 		} else {
 			app.get("sendError")("required attributes not supplied", res);
 		}
@@ -115,15 +112,10 @@ var addDeleteFunction = function (routeMakeup, app) {
 				dbObj.destroy().success(function () {
 						app.get("sendSuccess")("resource destroyed", res);
 					})
-					.error(function (error) {
-						app.get("sendError")("error destroying. see console", res);
-						console.log(error);
-					})
+					.error(dbErrorResponse(app, res, routeMakeup, "destroying"))
 			}
 		})
-		.error(function (error) {
-			app.get("sendError")("error getting " + routeMakeup.noun, res);
-		});
+		.error(dbErrorResponse(app, res, routeMakeup, "getting"));
 	}
 }
 
@@ -134,6 +126,38 @@ var addReadFunction = function (routeMakeup, app) {
 		} else {
 			getManyRead(routeMakeup, app, req, res);
 		}
+	}
+}
+var dbErrorResponse = function (app, res, routeMakeup, actionString) {
+	return function (error) {
+		app.get("sendError")("error " + (actionString || "with database") +
+			": " + routeMakeup.noun, res);
+		console.log(error);
+	};
+}
+
+var addUpdateFunction = function (routeMakeup, app) {
+	return function (req, res) {
+		var id = req.params.id,
+			requestBody = req.body;
+		var filteredParams = _.reduce((function (reference) {
+			return function (returnObj, attr) {
+				if (reference[attr] !== undefined) {
+					returnObj[attr] = reference[attr];
+				}
+				return returnObj;
+			};
+		}(requestBody)), {}, routeMakeup.optional);
+
+		app.get("models")[modelName(routeMakeup.noun)].find(id)
+			.success(function (item) {
+				item.updateAttributes(filteredParams)
+					.success(function () {
+						app.get("sendSuccess")("updated", res);
+					})
+					.error(dbErrorResponse(app, res, routeMakeup, "updating"))
+			})
+			.error(dbErrorResponse(app, res, routeMakeup, "getting"));
 	}
 }
 
@@ -149,9 +173,7 @@ var getSingleRead = function (routeMakeup, app, req, res) {
 				app.get("sendSuccess")(returnableValues, res);
 			}
 		})
-		.error(function (error) {
-			app.get("sendError")("error getting " + routeMakeup.noun, res);
-		});
+		.error(dbErrorResponse(app, res, routeMakeup, "getting"));
 }
 
 var getManyRead = function (routeMakeup, app, req, res) {
@@ -167,10 +189,7 @@ var getManyRead = function (routeMakeup, app, req, res) {
 				app.get("sendError")("no data found", res);
 			}
 		})
-		.error(function (error) {
-			app.get("sendError")("problem connecting to db. see console log for more details");
-			console.log(error);
-		})
+		.error(dbErrorResponse(app, res, routeMakeup, "getting"))
 }
 
 
@@ -188,8 +207,8 @@ var placeholderAction = function (app) {
 var genRestActions = function (app) {
 	return function (routeMakeup) {
 		routeMakeup.restData.create.func 		= addCreateFunction(routeMakeup, app);
-		routeMakeup.restData.read.func 			= addReadFunction(routeMakeup, app);
-		routeMakeup.restData.update.func 		= placeholderAction(app);
+		routeMakeup.restData.read.func 			= addReadFunction(routeMakeup, 	 app);
+		routeMakeup.restData.update.func 		= addUpdateFunction(routeMakeup, app);
 		routeMakeup.restData['delete'].func = addDeleteFunction(routeMakeup, app);
 
 		return routeMakeup;
