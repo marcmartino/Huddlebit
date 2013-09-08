@@ -3,16 +3,13 @@ mysql -h huddlebit-db.cgo9knjezv3t.us-west-2.rds.amazonaws.com -P 3306 -u marc -
 */
 var _ = require("../vendor/scoreunder");
 var dbConf = require("../config/db.json");
-console.log(dbConf);
+// console.log(dbConf);
 var Sequelize = require("sequelize-mysql").sequelize,
 	sequelize = new Sequelize(dbConf.database, dbConf.user, dbConf.pass, {
 		dialect: 'mysql',
 		host: dbConf.host,
 		port: dbConf.port
 	}),
-	/*sequelize = new Sequelize('huddlebit', 'root', 'testDBQWERTY', {
-		dialect: 'mysql'
-	}),*/
 	standardModels = require('./seqInit')(Sequelize, sequelize);
 standardModels.Seq = Sequelize;
 standardModels.seq = sequelize;

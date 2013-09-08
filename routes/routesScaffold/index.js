@@ -12,14 +12,13 @@ var getObjectAttr = function (obj) {
 }
 
 var getOptionalAttrs = getAttrs = function (attrList, obj) {
-	console.log("optional: ", attrList);
+	
 	return _.reduce(getObjectAttr(obj), {}, attrList);
 }
 
 var getRequiredAttrs = function (attrList, obj) {
 	var foundAttrs = getAttrs(attrList, obj);
-	console.log([attrList.length, "===", foundAttrs.length].join(" "));
-	if (attrList.length === foundAttrs.length) {
+	if (attrList.length === Object.keys(foundAttrs).length) {
 		return foundAttrs;
 	}
 }
@@ -35,7 +34,7 @@ var genRestUris = function (routeMakeup) {
 			verb: "post"
 		},
 		read: {
-			uri: uriStartPoint + routeMakeup.noun.toLowerCase() + "/:id",
+			uri: uriStartPoint + routeMakeup.noun.toLowerCase() + "/:id?",
 			verb: "get"
 		},
 		update: {
@@ -70,14 +69,13 @@ var validateBody = function (validateList, attrObj) {
 	modifiedAttrs = _.reduce((function (obj) {
 		return function (returnObj, modObj, attrName) {
 			var validatedObj = modObj.func(obj[attrName]);
-			// console.log([modObj, obj[attrName], validatedObj].join(" "));
+			
 			if (!validatedObj) {
 				delete returnObj[attrName];
 			}
 			return returnObj;
 		};
 	}(attrObj)), attrObj, validateList);
-	console.log(modifiedAttrs);
 	return modifiedAttrs;
 }
 
@@ -85,18 +83,17 @@ var addCreateFunction = function (routeMakeup, app) {
 	return function (req, res) {
 		var requestBody = req.body,
 			modifiedBody = modifyBody(routeMakeup.modify, requestBody);
-			console.log("validate");
-			console.log(routeMakeup.validate);
-			console.log(modifiedBody);
 		var validatedBody = validateBody(routeMakeup.validate, modifiedBody),
 			requiredAttrs = getRequiredAttrs(routeMakeup.required, validatedBody),
 			optionalAttrs = getOptionalAttrs(routeMakeup.optional, validatedBody),
 			finalAttrs;
 		if (requiredAttrs) {
 			finalAttrs = _.extend(optionalAttrs, requiredAttrs);
+			console.log("noun: " + modelName(routeMakeup.noun));
 			app.get("models")[modelName(routeMakeup.noun)].build(finalAttrs)
 				.save().success(function (newItem) {
-					app.get("sendSuccess")({id: 1, idTest: newItem.id});
+					var newDataValues = newItem.dataValues;
+					app.get("sendSuccess")({id: newDataValues.id}, res);
 				}).error(function (err) {
 					console.log(err);
 					app.get("sendError")("error saving see console for more info", res);
@@ -105,6 +102,57 @@ var addCreateFunction = function (routeMakeup, app) {
 			app.get("sendError")("required attributes not supplied", res);
 		}
 	}
+}
+
+var addReadFunction = function (routeMakeup, app) {
+	return function (req, res) {
+		if (req.params.id) {
+			getSingleRead(routeMakeup, app, req, res);
+		} else {
+			getManyRead(routeMakeup, app, req, res);
+		}
+	}
+}
+
+var getManyRead = function (routeMakeup, app, req, res) {
+	var queryParams = req.query;
+	app.get("models")[modelName(routeMakeup.noun)].findAll({where:
+		queryParams})
+		.success(function (dbObjs) {
+			console.log(typeof dbObjs);
+			if (dbObjs) {
+				var objsData = _.map(app.get("models").mapDataValues, dbObjs);
+				app.get("sendSuccess")(objsData, res);
+			} else {
+				app.get("sendError")("no data found", res);
+			}
+		})
+		.error(function (error) {
+			app.get("sendError")("problem connecting to db. see console log for more details");
+			console.log(error);
+		})
+}
+
+var getSingleRead = function (routeMakeup, app, req, res) {
+	var id = req.params.id;
+	app.get("models")[modelName(routeMakeup.noun)].find(id)
+		.success(function (dbObj) {
+			if (dbObj == null || dbObj.dataValues == null) {
+				app.get("sendError")("no object found", res);
+			} else {
+				var returnableValues = _.reduce(
+					takeOutHidden, dbObj.dataValues, routeMakeup.hidden);
+				app.get("sendSuccess")(returnableValues, res);
+			}
+		})
+		.error(function (error) {
+			app.get("sendError")("error getting " + routeMakeup.noun, res);
+		});
+}
+
+var takeOutHidden = function (reduceObj, val, key) {
+	delete reduceObj[val];
+	return reduceObj;
 }
 
 var placeholderAction = function (app) {
@@ -116,7 +164,7 @@ var placeholderAction = function (app) {
 var genRestActions = function (app) {
 	return function (routeMakeup) {
 		routeMakeup.restData.create.func 		= addCreateFunction(routeMakeup, app);
-		routeMakeup.restData.read.func 			= placeholderAction(app);
+		routeMakeup.restData.read.func 			= addReadFunction(routeMakeup, app);
 		routeMakeup.restData.update.func 		= placeholderAction(app);
 		routeMakeup.restData['delete'].func = placeholderAction(app);
 
@@ -129,9 +177,9 @@ var instantiateEndpoints = function (app) {
 	return function (routeMakeup) {
 		_.forEach(function (verbData, verb) {
 			console.log(
-				[verbData.verb, verbData.uri, verbData.func.length].join(" "));
+				[verbData.verb, verbData.uri].join(" "));
 			app[verbData.verb](verbData.uri, verbData.func);
-			console.log([routeMakeup.noun, verb, "instantiated"].join(" "));
+			//console.log([routeMakeup.noun, verb, "instantiated"].join(" "));
 		}, routeMakeup.restData);
 		return routeMakeup;
 	};

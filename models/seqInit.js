@@ -7,15 +7,15 @@ module.exports = function (Sequelize, sequelize) {
 	var models = {};
 
 	models.User = sequelize.define('User', {
-		id: {type: Sequelize.INTEGER},
+		id: {type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true},
 		name: {type: Sequelize.STRING, allowNull: false},
-		email: {type: Sequelize.STRING, allowNull: false},
+		email: {type: Sequelize.STRING, allowNull: false, primaryKey: true},
 		password: Sequelize.STRING,
 		description: Sequelize.TEXT
 	});
 
 	models.Startup = sequelize.define('Startup', {
-		id: {type: Sequelize.INTEGER},
+		id: {type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true},
 		name: {type: Sequelize.STRING, allowNull: false},
 		email: Sequelize.STRING,
 		url: {type: Sequelize.STRING, allowNull: false},
@@ -26,7 +26,7 @@ module.exports = function (Sequelize, sequelize) {
 	});
 
 	models.HelpRequest = sequelize.define('HelpRequest', {
-		id: {type: Sequelize.INTEGER},
+		id: {type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true},
 		startupId: {type: Sequelize.INTEGER, allowNull: false},
 		name: Sequelize.STRING,
 		title: Sequelize.STRING,
@@ -34,7 +34,7 @@ module.exports = function (Sequelize, sequelize) {
 	});
 
 	models.HelpRequestResponse = sequelize.define('HelpRequestResponse', {
-		id: {type: Sequelize.INTEGER},
+		id: {type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true},
 		userId: {type: Sequelize.INTEGER, allowNull: false},
 		helpRequestId: {type: Sequelize.INTEGER, allowNull: false},
 		status: {type: Sequelize.INTEGER, //was hoping to do an enumeration of pending, accepted, rejected but sequelize was being stupid
@@ -43,7 +43,7 @@ module.exports = function (Sequelize, sequelize) {
 	});
 
 	// models.HelpRequest = sequelize.define('', {
-	// 	id: {type: Sequelize.INTEGER},
+	// 	id: {type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true},
 	// 	name: Sequelize.STRING,
 		
 	// });

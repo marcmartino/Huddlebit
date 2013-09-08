@@ -20,6 +20,7 @@ module.exports = function(app){
 		noun: "user",
 		required: ["email", "password"],
 		optional: ["name", "description"],
+		hidden: ["password"],
 		validate: {email: {func: validateEmail,
 			message: "invalid email"}},
 		modify: {password: encryptPassword}
