@@ -104,6 +104,29 @@ var addCreateFunction = function (routeMakeup, app) {
 	}
 }
 
+var addDeleteFunction = function (routeMakeup, app) {
+	return function (req, res) {
+		var id = req.params.id;
+		app.get("models")[modelName(routeMakeup.noun)].find(id)
+		.success(function (dbObj) {
+			if (dbObj == null || dbObj.dataValues == null) {
+				app.get("sendError")("no object found", res);
+			} else {
+				dbObj.destroy().success(function () {
+						app.get("sendSuccess")("resource destroyed", res);
+					})
+					.error(function (error) {
+						app.get("sendError")("error destroying. see console", res);
+						console.log(error);
+					})
+			}
+		})
+		.error(function (error) {
+			app.get("sendError")("error getting " + routeMakeup.noun, res);
+		});
+	}
+}
+
 var addReadFunction = function (routeMakeup, app) {
 	return function (req, res) {
 		if (req.params.id) {
@@ -112,6 +135,23 @@ var addReadFunction = function (routeMakeup, app) {
 			getManyRead(routeMakeup, app, req, res);
 		}
 	}
+}
+
+var getSingleRead = function (routeMakeup, app, req, res) {
+	var id = req.params.id;
+	app.get("models")[modelName(routeMakeup.noun)].find(id)
+		.success(function (dbObj) {
+			if (dbObj == null || dbObj.dataValues == null) {
+				app.get("sendError")("no object found", res);
+			} else {
+				var returnableValues = _.reduce(
+					takeOutHidden, dbObj.dataValues, routeMakeup.hidden);
+				app.get("sendSuccess")(returnableValues, res);
+			}
+		})
+		.error(function (error) {
+			app.get("sendError")("error getting " + routeMakeup.noun, res);
+		});
 }
 
 var getManyRead = function (routeMakeup, app, req, res) {
@@ -133,22 +173,6 @@ var getManyRead = function (routeMakeup, app, req, res) {
 		})
 }
 
-var getSingleRead = function (routeMakeup, app, req, res) {
-	var id = req.params.id;
-	app.get("models")[modelName(routeMakeup.noun)].find(id)
-		.success(function (dbObj) {
-			if (dbObj == null || dbObj.dataValues == null) {
-				app.get("sendError")("no object found", res);
-			} else {
-				var returnableValues = _.reduce(
-					takeOutHidden, dbObj.dataValues, routeMakeup.hidden);
-				app.get("sendSuccess")(returnableValues, res);
-			}
-		})
-		.error(function (error) {
-			app.get("sendError")("error getting " + routeMakeup.noun, res);
-		});
-}
 
 var takeOutHidden = function (reduceObj, val, key) {
 	delete reduceObj[val];
@@ -166,7 +190,7 @@ var genRestActions = function (app) {
 		routeMakeup.restData.create.func 		= addCreateFunction(routeMakeup, app);
 		routeMakeup.restData.read.func 			= addReadFunction(routeMakeup, app);
 		routeMakeup.restData.update.func 		= placeholderAction(app);
-		routeMakeup.restData['delete'].func = placeholderAction(app);
+		routeMakeup.restData['delete'].func = addDeleteFunction(routeMakeup, app);
 
 		return routeMakeup;
 	};
