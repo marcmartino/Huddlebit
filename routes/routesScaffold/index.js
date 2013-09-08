@@ -184,6 +184,9 @@ var getManyRead = function (routeMakeup, app, req, res) {
 			console.log(typeof dbObjs);
 			if (dbObjs) {
 				var objsData = _.map(app.get("models").mapDataValues, dbObjs);
+				objsData = _.map(function (objData) {
+					return _.reduce(takeOutHidden, objData, routeMakeup.hidden);
+				}, objsData);
 				app.get("sendSuccess")(objsData, res);
 			} else {
 				app.get("sendError")("no data found", res);
