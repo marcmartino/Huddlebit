@@ -50,19 +50,19 @@ if ('development' == app.get('env')) {
   app.set('port', process.env.PORT || 3000);
 }
 
-app.get('/', function (req, res){
-  // res.render('index', { title: 'Huddlebit fuck yeah!' });
-  res.redirect('/signup');
-});
 app.get('/signup', function (req, res) {
   res.render('email', {});
 });
 app.get('/users', user.list);
 app.get('/dbsync', function (req, res) {
-	res.send("attempted to set " + models.dbSync(models) +
-		". Check the console for further information");
+  res.send("attempted to set " + models.dbSync(models) +
+    ". Check the console for further information");
 });
 routes(app);
+app.get('/', function (req, res){
+  // res.render('index', { title: 'Huddlebit fuck yeah!' });
+  res.redirect('/signup');
+});
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
