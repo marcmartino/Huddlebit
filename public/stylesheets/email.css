@@ -1,0 +1,91 @@
+body {
+	background-color: #e8e8ea;
+	color: #424649;
+	font-family: sans-serif;
+	font-size: 0.9em;
+}
+#content {
+	width: 100%;
+	max-width: 670px;
+	margin: auto;
+	text-align: center;
+	position: relative;
+}
+
+#visuals {
+	margin-top: 60px;
+}
+#visuals > img {
+	width: 80%;
+	max-width: 410px;
+}
+
+#tagline {
+	margin: 40px 0 25px;
+	font-size: 1.2em;
+}
+
+#emailForm {
+	background-color: #d6d4d5;
+	width: 90%;
+	margin: auto;
+	max-width: 460px;
+	padding: 7px;
+	border-radius: 10px;
+	box-shadow: -1px 2px #969698;
+	position: relative;
+}
+#emailForm, #emailForm > * {
+	border-radius: 5px;
+	border: 0px;
+
+}
+#emailForm > * {
+	font-size: 1.2em;
+	height: 39px;
+}
+#emailForm input[type=submit] {
+	background-color: #f04a5e;
+	color: white;
+	font-weight: bold;
+	padding: 9px 20px;
+	position: absolute;
+	right: 7px;
+	top: 7px;
+	cursor: pointer;
+}
+#emailForm input[type=submit]:focus {
+	box-shadow: inset 2px -4px #C43B4B;
+}
+#emailForm input[type=submit]:active {
+	background-color: #D94153;
+}
+#emailForm input[type=text] {
+	padding: 9px 0 9px 10px;
+	width: 99%;
+}
+
+#alertMessages {
+	width: 90%;
+	margin: 10px auto 0;
+	max-width: 460px;
+}
+#alertMessages > * {
+	border-radius: 5px;
+	padding: 10px;
+	display: none;
+	font-size: 0.9em;
+	margin: 5px;
+}
+#alertMessages .success_message {
+	background-color: #9AD69A;
+}
+#alertMessages .error_message {
+	background-color: #D69A9A;
+}
+
+@media only screen and (min-width: 35em) {
+	body {
+		font-size: 1em;
+	}
+}

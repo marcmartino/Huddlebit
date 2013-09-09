@@ -12,24 +12,29 @@
 		<meta property="og:title" content="Huddlebit - coming soon"/>
 		<meta property="og:url" content="http://huddlebit.com/signup"/>
 		<meta property="og:site_name" content="Huddlebit"/>
-
+		
+		<link rel="stylesheet" type="text/css" href="stylesheets/email.css" />
 		<script src="vendor/javascript/jquery-2.0.3.min.js"></script>
 		<script src="vendor/javascript/scoreunder.js"></script>
 		<script src="javascript/emailForm.js"></script>
+		<script src="javascript/headerMessage.js"></script>
 	</head>
 	</body>
 		<div id="content">
 			<div id="visuals">
-				<img src="" alt="" id="icon">
-				<img src="" alt="" id="typeface">
+				<img src="images/HDLBIT_Logo_web.png" alt="" id="icon">
 			</div>
-			<div>
-				<em>Coming soon!...</em> Let us bombard you with an email when we launch.
+			<div id="tagline">
+				<strong>Coming soon!...</strong> Let us bombard you with an email when we launch.
 			</div>
 			<form action="saveEmail" id="emailForm">
-				<input type="text" />
+				<input type="text" placeholder="Enter email here..." />
 				<input type="submit" value="Submit" />
 			</form>
+			<div id="alertMessages">
+				<div class="success_message"></div>
+				<div class="error_message"></div>
+			</div>
 		</div>
 	</body>
 </html>
