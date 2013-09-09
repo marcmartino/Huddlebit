@@ -51,7 +51,8 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', function (req, res){
-  res.render('index', { title: 'Huddlebit fuck yeah!' });
+  // res.render('index', { title: 'Huddlebit fuck yeah!' });
+  res.redirect('/signup');
 });
 app.get('/signup', function (req, res) {
   res.render('email', {});
