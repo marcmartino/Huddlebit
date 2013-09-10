@@ -6,9 +6,8 @@ var encryptPassword = function (pass) {
 	return "poopberry";
 };
 var validateEmail = function (email) {
-	if (email.indexOf("@") > -1) {
-		return true;
-	}
+	return (email.length > 5 && email.indexOf(".") &&
+		email.indexOf("@") > -1);
 };
 var getCurrentUserId = function (adminUserId) {
 	return 1;
@@ -19,7 +18,9 @@ module.exports = function(app){
 	var routesMakeup = [{
 		noun: "email",
 		required: ["email"],
-		optional: ["ip", "browser"]
+		optional: ["ip", "browser"],
+		validate: {email: {func: validateEmail,
+			message: "invalid email"}}
 	},{
 		noun: "user",
 		required: ["email", "password"],
