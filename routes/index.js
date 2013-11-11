@@ -12,6 +12,11 @@ var validateEmail = function (email) {
 var getCurrentUserId = function (adminUserId) {
 	return 1;
 }
+var isValidId = function (objectName) {
+	return function () {
+		return true;
+	};
+}
 
 module.exports = function(app){	
 	var scaffoldApi = require("./routesScaffold");
@@ -34,8 +39,14 @@ module.exports = function(app){
 		required: ["name", "url", "adminUserId"],
 		optional: ["email", "tagline", "imageUrl", "description"],
 		validate: {email: {func: validateEmail,
-			message: "invalid email"}},
+			message: "invalid email"},
+			adminUserId: {func: isValidId("user"), message: "invalid user id"}},
 		modify: {adminUserId: getCurrentUserId}
+	},{
+		noun: "helpRequest",
+		required: ["title", "startupId", "description"],
+		validate: {startupId: 
+			{func: isValidId("startup"), message: "invalid startup id"}}
 	}];
   scaffoldApi(app)(routesMakeup);
 };

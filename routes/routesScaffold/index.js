@@ -12,7 +12,6 @@ var getObjectAttr = function (obj) {
 }
 
 var getOptionalAttrs = getAttrs = function (attrList, obj) {
-	
 	return _.reduce(getObjectAttr(obj), {}, attrList);
 }
 
@@ -30,7 +29,7 @@ module.exports = function (app) {
 var genRestUris = function (routeMakeup) {
 	var restUris = {
 		create: {
-			uri: uriStartPoint + routeMakeup.noun.toLowerCase() + "/create",
+			uri: uriStartPoint + routeMakeup.noun.toLowerCase() + "/",
 			verb: "post"
 		},
 		read: {
@@ -69,7 +68,7 @@ var validateBody = function (validateList, attrObj) {
 	modifiedAttrs = _.reduce((function (obj) {
 		return function (returnObj, modObj, attrName) {
 			var validatedObj = modObj.func(obj[attrName]);
-			
+
 			if (!validatedObj) {
 				delete returnObj[attrName];
 			}
