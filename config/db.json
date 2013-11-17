@@ -1,7 +1,7 @@
 {
-	"database": "",
-	"user": "",
-	"pass": "",
-	"host": "",
-	"port": 0
+	"database": "huddlebit",
+	"user": "root",
+	"pass": "root",
+	"host": "localhost",
+	"port": 8889
 }
