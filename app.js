@@ -59,6 +59,11 @@ app.get('/dbsync', function (req, res) {
     ". Check the console for further information");
 });
 routes(app);
+
+app.get('/home', function (req, res) {
+  res.render("home", {title: "Home"});
+});
+
 app.get('/', function (req, res){
   // res.render('index', { title: 'Huddlebit fuck yeah!' });
   res.redirect('/signup');

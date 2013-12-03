@@ -1,0 +1,18 @@
+$grayBackground: #EDECF1;
+$textBlack: #363A3D;
+$textWhite: white;
+$gray: #E1E4EA;
+$red: #F5324C;
+$yellow: #FEA43F;
+
+$bp-small : 24em;
+$bp-med : 46.8em;
+$bp-large : 50em;
+$bp-xl : 73em;
+
+@mixin placeholder {
+  ::-webkit-input-placeholder {@content}
+  :-moz-placeholder           {@content}
+  ::-moz-placeholder          {@content}
+  :-ms-input-placeholder      {@content}  
+}

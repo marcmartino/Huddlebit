@@ -5,7 +5,7 @@ $(function () {
 		var email = $(this).find("input[type=text]").val();
 		var ua = window.navigator.userAgent;
 		$.ajax({
-			url: "/api/email/create",
+			url: "/api/email/",
 			type: "POST",
 			data: {
 				email: email,

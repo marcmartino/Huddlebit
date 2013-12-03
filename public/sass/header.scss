@@ -1,0 +1,23 @@
+@import "./base";
+#logo {
+	background-image: image-url("HDLBIT_Logo_web.png");
+	height: 117px;
+	width: 173px;
+	background-repeat: no-repeat;
+	display: inline-block;
+	background-size: contain;
+}
+header {
+	overflow: hidden;
+	nav {
+		display: none;
+		// display: inline-block;
+	}
+	#signIn {
+		display: none;
+	}
+}
+
+@media only screen and (min-width: 35em) {
+    /* Style adjustments for viewports that meet the condition */
+}

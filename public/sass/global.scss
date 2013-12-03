@@ -1,0 +1,62 @@
+@import "./base";
+body {
+	background-color: $grayBackground;
+	color: $textBlack;
+	font-family: sans-serif;
+	background-image: image-url("HDLBIT_BorderPattern.png");
+	background-repeat: repeat-y;
+	background-position: top left;
+	padding-left: 8px
+}
+
+@include placeholder {
+	color: $gray;
+}
+::-moz-selection {
+    background: #EFD2D2;
+    text-shadow: none;
+}
+
+::selection {
+    background: #EFD2D2;
+    text-shadow: none;
+}
+
+.left {
+	float: left;
+}
+.right {
+	float: right;
+}
+
+.button {
+	background-color: $yellow;
+	color: $textWhite;
+	border-radius: 3px;
+	border-width: 0;
+	padding: 3px;
+	display: inline-block;
+	
+}
+
+input{
+	&[type=text], &[type=password] {
+		border-radius: 3px;
+		border-width: 0;
+		padding: 3px;
+		margin: 0;
+	}
+}
+
+a {
+	color: $yellow;
+	text-decoration: none;
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+
+@media only screen and (min-width: $bp-small) {
+    /* Style adjustments for viewports that meet the condition */
+}

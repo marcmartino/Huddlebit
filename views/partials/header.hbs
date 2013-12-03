@@ -9,12 +9,33 @@
     <title>{{title}}</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
-		<link rel="stylesheet" type="text/css" href="/global/htmlElements/css/globalStyles.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/global.css">
+		<link rel="stylesheet" type="text/css" href="/stylesheets/header.css">
 		{{#styles}}
 		<link rel="stylesheet" type="text/css" href="{{href}}" >
 		{{/styles}}
   </head>
   <body>
   	<header>
-			<h1>hdlbt</h1>
+			<div class="left">
+        <a href="/" id="logo"></a>
+        <div id="mobileMenu">
+          =</div>
+        <nav>
+          <a href="">Community</a>
+          <a href="">Startups</a>
+          <a href="">Players</a>
+        </nav>
+      </div>
+
+      <div class="right">
+        <a id="signInButton" class="button">sign in</a>
+        <form action="" id="signIn">
+          <input type="text" placeholder="email" class="email">
+          <input type="password" placeholder="password" class="password">
+          <input type="submit" class="submit button" value="login">
+        </form>
+      </div>
 		</header>
+    <div id="content">

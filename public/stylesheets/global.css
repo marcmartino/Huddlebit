@@ -1,0 +1,84 @@
+/* line 2, ../sass/global.scss */
+body {
+  background-color: #edecf1;
+  color: #363a3d;
+  font-family: sans-serif;
+  background-image: url('../images/HDLBIT_BorderPattern.png?1384723999');
+  background-repeat: repeat-y;
+  background-position: top left;
+  padding-left: 8px;
+}
+
+/* line 14, ../sass/_base.scss */
+::-webkit-input-placeholder {
+  color: #e1e4ea;
+}
+
+/* line 15, ../sass/_base.scss */
+:-moz-placeholder {
+  color: #e1e4ea;
+}
+
+/* line 16, ../sass/_base.scss */
+::-moz-placeholder {
+  color: #e1e4ea;
+}
+
+/* line 17, ../sass/_base.scss */
+:-ms-input-placeholder {
+  color: #e1e4ea;
+}
+
+/* line 15, ../sass/global.scss */
+::-moz-selection {
+  background: #EFD2D2;
+  text-shadow: none;
+}
+
+/* line 20, ../sass/global.scss */
+::selection {
+  background: #EFD2D2;
+  text-shadow: none;
+}
+
+/* line 25, ../sass/global.scss */
+.left {
+  float: left;
+}
+
+/* line 28, ../sass/global.scss */
+.right {
+  float: right;
+}
+
+/* line 32, ../sass/global.scss */
+.button {
+  background-color: #fea43f;
+  color: white;
+  border-radius: 3px;
+  border-width: 0;
+  padding: 3px;
+  display: inline-block;
+}
+
+/* line 43, ../sass/global.scss */
+input[type=text], input[type=password] {
+  border-radius: 3px;
+  border-width: 0;
+  padding: 3px;
+  margin: 0;
+}
+
+/* line 51, ../sass/global.scss */
+a {
+  color: #fea43f;
+  text-decoration: none;
+}
+/* line 54, ../sass/global.scss */
+a:hover {
+  text-decoration: underline;
+}
+
+@media only screen and (min-width: 24em) {
+  /* Style adjustments for viewports that meet the condition */
+}

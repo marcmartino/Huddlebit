@@ -1,0 +1,26 @@
+/* line 2, ../sass/header.scss */
+#logo {
+  background-image: url('../images/HDLBIT_Logo_web.png?1384717846');
+  height: 117px;
+  width: 173px;
+  background-repeat: no-repeat;
+  display: inline-block;
+  background-size: contain;
+}
+
+/* line 10, ../sass/header.scss */
+header {
+  overflow: hidden;
+}
+/* line 12, ../sass/header.scss */
+header nav {
+  display: none;
+}
+/* line 16, ../sass/header.scss */
+header #signIn {
+  display: none;
+}
+
+@media only screen and (min-width: 35em) {
+  /* Style adjustments for viewports that meet the condition */
+}
