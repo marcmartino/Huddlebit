@@ -9,22 +9,22 @@ body {
   padding-left: 8px;
 }
 
-/* line 14, ../sass/_base.scss */
+/* line 16, ../sass/_base.scss */
 ::-webkit-input-placeholder {
   color: #e1e4ea;
 }
 
-/* line 15, ../sass/_base.scss */
+/* line 17, ../sass/_base.scss */
 :-moz-placeholder {
   color: #e1e4ea;
 }
 
-/* line 16, ../sass/_base.scss */
+/* line 18, ../sass/_base.scss */
 ::-moz-placeholder {
   color: #e1e4ea;
 }
 
-/* line 17, ../sass/_base.scss */
+/* line 19, ../sass/_base.scss */
 :-ms-input-placeholder {
   color: #e1e4ea;
 }
@@ -59,9 +59,22 @@ body {
   border-width: 0;
   padding: 3px;
   display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+}
+/* line 41, ../sass/global.scss */
+.button:hover {
+  box-shadow: inset -2px -2px 0 #1a0f42;
+  padding: 2px 4px 4px 2px;
+  text-decoration: none;
+}
+/* line 46, ../sass/global.scss */
+.button:active {
+  background-color: #f5324c;
+  box-shadow: 0 0 0 white;
 }
 
-/* line 43, ../sass/global.scss */
+/* line 53, ../sass/global.scss */
 input[type=text], input[type=password] {
   border-radius: 3px;
   border-width: 0;
@@ -69,16 +82,16 @@ input[type=text], input[type=password] {
   margin: 0;
 }
 
-/* line 51, ../sass/global.scss */
+/* line 61, ../sass/global.scss */
 a {
   color: #fea43f;
   text-decoration: none;
 }
-/* line 54, ../sass/global.scss */
+/* line 64, ../sass/global.scss */
 a:hover {
   text-decoration: underline;
 }
 
-@media only screen and (min-width: 24em) {
+@media only screen and (min-width: 35em) {
   /* Style adjustments for viewports that meet the condition */
 }

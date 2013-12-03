@@ -36,7 +36,17 @@ body {
 	border-width: 0;
 	padding: 3px;
 	display: inline-block;
-	
+	cursor: pointer;
+	text-decoration: none;
+	&:hover {
+		box-shadow: inset -2px -2px 0 $navyBlue;
+		padding: 2px 4px 4px 2px;
+		text-decoration: none;
+	}
+	&:active {
+		background-color: $red;
+		box-shadow: 0 0 0 white;
+	}
 }
 
 input{

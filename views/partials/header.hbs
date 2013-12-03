@@ -15,27 +15,33 @@
 		{{#styles}}
 		<link rel="stylesheet" type="text/css" href="{{href}}" >
 		{{/styles}}
+    
   </head>
   <body>
   	<header>
-			<div class="left">
+			<div class="">
         <a href="/" id="logo"></a>
-        <div id="mobileMenu">
+        <div id="mobileMenu" class="button">
           =</div>
-        <nav>
-          <a href="">Community</a>
-          <a href="">Startups</a>
-          <a href="">Players</a>
-        </nav>
+        
+        <div id="headerContents" class="">
+          <nav>
+            <a href="">Community</a>
+            <a href="">Startups</a>
+            <a href="">Players</a>
+          </nav>
+
+          <div id="headerSignIn">
+            <a id="signInButton" class="button">sign in</a>
+            <form action="" id="signIn">
+              <input type="text" placeholder="email" class="email">
+              <input type="password" placeholder="password" class="password">
+              <input type="submit" class="submit button" value="login">
+            </form>
+          </div>
+        </div>
+
       </div>
 
-      <div class="right">
-        <a id="signInButton" class="button">sign in</a>
-        <form action="" id="signIn">
-          <input type="text" placeholder="email" class="email">
-          <input type="password" placeholder="password" class="password">
-          <input type="submit" class="submit button" value="login">
-        </form>
-      </div>
 		</header>
     <div id="content">

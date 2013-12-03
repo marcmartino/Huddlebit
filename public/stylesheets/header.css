@@ -4,23 +4,102 @@
   height: 117px;
   width: 173px;
   background-repeat: no-repeat;
-  display: inline-block;
+  display: block;
+  margin: auto auto 15px;
   background-size: contain;
 }
 
-/* line 10, ../sass/header.scss */
+/* line 11, ../sass/header.scss */
 header {
+  padding: 10px 0 5px;
+  margin: auto 1%;
+  position: relative;
   overflow: hidden;
+  border-bottom: 1px solid #e1e4ea;
+  margin-bottom: 10px;
 }
-/* line 12, ../sass/header.scss */
+/* line 18, ../sass/header.scss */
 header nav {
-  display: none;
+  display: inline-block;
 }
-/* line 16, ../sass/header.scss */
+/* line 21, ../sass/header.scss */
 header #signIn {
   display: none;
 }
 
+/* line 25, ../sass/header.scss */
+#headerContents {
+  -webkit-transition: max-height 500ms linear;
+  -webkit-transition-delay: 0s;
+  -moz-transition: max-height 500ms linear 0s;
+  -o-transition: max-height 500ms linear 0s;
+  transition: max-height 500ms linear 0s;
+  max-height: 0px;
+  overflow: hidden;
+  background-color: #e1e4ea;
+  width: 100%;
+}
+/* line 31, ../sass/header.scss */
+#headerContents nav {
+  padding: 5px 0;
+  text-align: center;
+  width: 100%;
+}
+/* line 35, ../sass/header.scss */
+#headerContents nav > a {
+  padding: 5px 0;
+  display: block;
+}
+/* line 40, ../sass/header.scss */
+#headerContents #headerSignIn {
+  text-align: center;
+  margin-bottom: 10px;
+}
+/* line 44, ../sass/header.scss */
+#headerContents.open {
+  max-height: 150px;
+}
+
+/* line 49, ../sass/header.scss */
+#mobileMenu {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 6px;
+  font-size: 2em;
+  border-radius: 6px;
+  margin: 6px;
+  color: #edecf1;
+}
+
 @media only screen and (min-width: 35em) {
-  /* Style adjustments for viewports that meet the condition */
+  /* line 61, ../sass/header.scss */
+  #logo {
+    float: left;
+  }
+
+  /* line 64, ../sass/header.scss */
+  #mobileMenu {
+    display: none;
+  }
+
+  /* line 67, ../sass/header.scss */
+  header #headerContents {
+    max-height: none;
+  }
+
+  /* line 70, ../sass/header.scss */
+  #headerContents {
+    background-color: #edecf1;
+    width: auto;
+  }
+  /* line 73, ../sass/header.scss */
+  #headerContents nav {
+    float: left;
+    width: auto;
+  }
+  /* line 76, ../sass/header.scss */
+  #headerContents nav > a {
+    display: inline-block;
+  }
 }

@@ -4,20 +4,78 @@
 	height: 117px;
 	width: 173px;
 	background-repeat: no-repeat;
-	display: inline-block;
+	display: block;
+	margin: auto auto 15px;
 	background-size: contain;
 }
 header {
+	padding: 10px 0 5px;
+	margin: auto 1%;
+	position: relative;
 	overflow: hidden;
+	border-bottom: 1px solid $gray;
+	margin-bottom: 10px;
 	nav {
-		display: none;
-		// display: inline-block;
+		display: inline-block;
 	}
 	#signIn {
 		display: none;
 	}
 }
+#headerContents {
+	@include single-transition(max-height, 500ms, linear, 0s);
+	max-height: 0px;	
+	overflow: hidden;
+	background-color: $gray;
+	width: 100%;
+	nav {
+		padding: 5px 0;
+		text-align: center;
+		width: 100%;
+		&> a {
+			padding: 5px 0;
+			display: block;
+		}
+	}
+	#headerSignIn {
+		text-align: center;
+		margin-bottom: 10px;
+	}
+	&.open {
+		max-height: 150px;
+	}
+}
 
-@media only screen and (min-width: 35em) {
-    /* Style adjustments for viewports that meet the condition */
+#mobileMenu {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 6px;
+	font-size: 2em;
+	border-radius: 6px;
+	margin: 6px;
+	color: $grayBackground;
+}
+
+@media only screen and (min-width: $bp-small) {
+	#logo {
+		float: left;
+	}
+  #mobileMenu {
+  	display: none;
+  }
+  header #headerContents {
+		max-height: none;
+  }
+  #headerContents {
+		background-color: $grayBackground;
+		width: auto;
+  	nav {
+  		float: left;
+  		width: auto;
+  		&> a {
+  			display: inline-block;
+  		}
+  	}
+  }
 }
