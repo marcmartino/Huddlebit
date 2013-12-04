@@ -57,6 +57,27 @@ header {
 	color: $grayBackground;
 }
 
+/*footer*/
+footer {
+	padding: 40px 1% 20px;
+	text-align: center;
+	font-size: 0.9em;
+	&> ul {
+		// float: right;
+		list-style-type: none;
+		margin: 0;
+		padding: 0; 
+		li {
+			display: inline;
+			&+ li {
+				&:before {
+					content: " | ";
+				}
+			}
+		}
+	}
+}
+
 @media only screen and (min-width: $bp-small) {
 	header {
 		padding: 15px 0 5px;
@@ -94,6 +115,11 @@ header {
   		}
   	}
   }
+
+  footer {
+  	padding: 45px 2% 20px;
+  	text-align: right;
+  }
 }
 
 @media only screen and (min-width: $bp-med) {
@@ -120,6 +146,11 @@ header {
 		.textfield {
 			max-width: 25%;
 		}
+	}
+
+
+	footer {
+		padding: 45px 3% 25px;
 	}
 }
 
@@ -154,10 +185,19 @@ header {
   		}
   	}
 	}
+
+	footer {
+		padding: 50px 5% 25px;
+	}
   
 }
 @media only screen and (min-width: $bp-xl) {
 	header {
+		margin: auto;
+		max-width: ($bp-xl - 10);
+	}
+
+	footer {
 		margin: auto;
 		max-width: ($bp-xl - 10);
 	}
