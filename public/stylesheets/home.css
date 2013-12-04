@@ -1,0 +1,43 @@
+/* line 3, ../sass/home.scss */
+#userInfo {
+  border-bottom: 1px solid #e1e4ea;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+/* line 8, ../sass/home.scss */
+#userPicture {
+  width: 30%;
+  float: left;
+  padding: 0 1% 5px 0;
+}
+
+/* line 19, ../sass/home.scss */
+#infoText > h1 {
+  margin-bottom: 0;
+}
+
+/* line 24, ../sass/home.scss */
+#requestSearch {
+  background-color: #e1e4ea;
+  padding: 5px 1%;
+  border-radius: 6px;
+}
+
+/* line 30, ../sass/home.scss */
+#requestTable > .requestRow {
+  padding: 8px 2%;
+  border-bottom: 1px solid #e1e4ea;
+  vertical-align: middle;
+  position: relative;
+}
+/* line 36, ../sass/home.scss */
+#requestTable .name {
+  display: none;
+}
+/* line 40, ../sass/home.scss */
+#requestTable .acceptRequest {
+  position: absolute;
+  top: 5px;
+  right: 2%;
+}

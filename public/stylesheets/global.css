@@ -9,22 +9,22 @@ body {
   padding-left: 8px;
 }
 
-/* line 16, ../sass/_base.scss */
+/* line 18, ../sass/_base.scss */
 ::-webkit-input-placeholder {
   color: #e1e4ea;
 }
 
-/* line 17, ../sass/_base.scss */
+/* line 19, ../sass/_base.scss */
 :-moz-placeholder {
   color: #e1e4ea;
 }
 
-/* line 18, ../sass/_base.scss */
+/* line 20, ../sass/_base.scss */
 ::-moz-placeholder {
   color: #e1e4ea;
 }
 
-/* line 19, ../sass/_base.scss */
+/* line 21, ../sass/_base.scss */
 :-ms-input-placeholder {
   color: #e1e4ea;
 }
@@ -42,16 +42,27 @@ body {
 }
 
 /* line 25, ../sass/global.scss */
+h1 {
+  margin: 0.17em 0;
+  font-size: 1.5em;
+}
+
+/* line 29, ../sass/global.scss */
+p {
+  margin: 0.8em 0;
+}
+
+/* line 33, ../sass/global.scss */
 .left {
   float: left;
 }
 
-/* line 28, ../sass/global.scss */
+/* line 36, ../sass/global.scss */
 .right {
   float: right;
 }
 
-/* line 32, ../sass/global.scss */
+/* line 40, ../sass/global.scss */
 .button {
   background-color: #fea43f;
   color: white;
@@ -62,19 +73,27 @@ body {
   cursor: pointer;
   text-decoration: none;
 }
-/* line 41, ../sass/global.scss */
+/* line 49, ../sass/global.scss */
 .button:hover {
   box-shadow: inset -2px -2px 0 #1a0f42;
   padding: 2px 4px 4px 2px;
   text-decoration: none;
 }
-/* line 46, ../sass/global.scss */
+/* line 54, ../sass/global.scss */
 .button:active {
   background-color: #f5324c;
   box-shadow: 0 0 0 white;
 }
+/* line 58, ../sass/global.scss */
+.button.red {
+  background-color: #f5324c;
+}
+/* line 60, ../sass/global.scss */
+.button.red:active {
+  background-color: #b92c3f;
+}
 
-/* line 53, ../sass/global.scss */
+/* line 67, ../sass/global.scss */
 input[type=text], input[type=password] {
   border-radius: 3px;
   border-width: 0;
@@ -82,16 +101,43 @@ input[type=text], input[type=password] {
   margin: 0;
 }
 
-/* line 61, ../sass/global.scss */
+/* line 75, ../sass/global.scss */
 a {
   color: #fea43f;
   text-decoration: none;
 }
-/* line 64, ../sass/global.scss */
+/* line 78, ../sass/global.scss */
 a:hover {
   text-decoration: underline;
 }
 
+/* line 83, ../sass/global.scss */
+#content {
+  margin: auto 1%;
+}
+
 @media only screen and (min-width: 35em) {
-  /* Style adjustments for viewports that meet the condition */
+  /* line 89, ../sass/global.scss */
+  #content {
+    margin: auto 2%;
+  }
+}
+@media only screen and (min-width: 46.8em) {
+  /* line 95, ../sass/global.scss */
+  #content {
+    margin: auto 3%;
+  }
+}
+@media only screen and (min-width: 50em) {
+  /* line 101, ../sass/global.scss */
+  #content {
+    margin: auto 5%;
+  }
+}
+@media only screen and (min-width: 83em) {
+  /* line 107, ../sass/global.scss */
+  #content {
+    margin: auto;
+    max-width: 73em;
+  }
 }

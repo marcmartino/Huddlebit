@@ -22,6 +22,14 @@ body {
     text-shadow: none;
 }
 
+h1 {
+	margin: 0.17em 0;
+	font-size: 1.5em;
+}
+p {
+	margin: 0.8em 0;
+}
+
 .left {
 	float: left;
 }
@@ -47,6 +55,12 @@ body {
 		background-color: $red;
 		box-shadow: 0 0 0 white;
 	}
+	&.red {
+		background-color: $red;
+		&:active {
+			background-color: $darkRed;
+		}
+	}
 }
 
 input{
@@ -66,7 +80,32 @@ a {
 	}
 }
 
+#content {
+	margin: auto 1%;
+}
+
 
 @media only screen and (min-width: $bp-small) {
-    /* Style adjustments for viewports that meet the condition */
+  #content {
+		margin: auto 2%;
+	}
+}
+
+@media only screen and (min-width: $bp-med) {
+	#content {
+		margin: auto 3%;
+	}
+}
+
+@media only screen and (min-width: $bp-large) {
+	#content {
+		margin: auto 5%;
+	}
+}
+
+@media only screen and (min-width: $bp-xl) {
+	#content {
+		margin: auto;
+		max-width: ($bp-xl - 10);
+	}
 }

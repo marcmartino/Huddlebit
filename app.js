@@ -61,7 +61,8 @@ app.get('/dbsync', function (req, res) {
 routes(app);
 
 app.get('/home', function (req, res) {
-  res.render("home", {title: "Home"});
+  res.render("home", {title: "Home",
+    styles: [{href: "/stylesheets/home.css"}]});
 });
 
 app.get('/', function (req, res){

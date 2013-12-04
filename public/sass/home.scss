@@ -1,0 +1,45 @@
+@import "./base";
+
+#userInfo {
+	border-bottom: 1px solid $gray;
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+}
+#userPicture {
+	// background-color: $gray;
+	// height: 200px;
+	width: 30%;
+	float: left;
+	padding: 0 1% 5px 0;
+	// background-size: contain;
+	// background-image: image-url("testAvatar.jpg");
+	// background-repeat: no-repeat;
+}
+#infoText {
+	&>h1 {
+		margin-bottom: 0;
+	}
+}
+
+#requestSearch {
+	background-color: $mediumGray;
+	padding: 5px 1%;
+	border-radius: 6px;
+}
+#requestTable {
+	&> .requestRow {
+		padding: 8px 2%;
+		border-bottom: 1px solid $gray;
+		vertical-align: middle;
+		position: relative;
+	}
+	.name {
+		display: none;
+		
+	}
+	.acceptRequest {
+		position: absolute;
+		top: 5px;
+		right: 2%;
+	}
+}
