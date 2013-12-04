@@ -32,6 +32,7 @@
 		border-bottom: 1px solid $gray;
 		vertical-align: middle;
 		position: relative;
+		
 	}
 	.name {
 		display: none;
@@ -42,4 +43,46 @@
 		top: 5px;
 		right: 2%;
 	}
+}
+
+@media only screen and (min-width: $bp-small) {
+	#userInfo {
+		padding-top: 15px;
+		padding-bottom: 15px;
+		margin-bottom: 15px;
+	}
+	#userPicture {
+		padding: 0 2% 10px 0;
+		max-width: 180px;
+	}
+	#requestTable {
+		.title {
+			width: 33%;
+			display: inline-block;
+		}
+		.name {
+			width: 33%;
+			display: inline-block;
+		}
+	}
+	#infoParagraph {
+		max-width: 85%;
+	}
+}
+
+@media only screen and (min-width: $bp-med) {
+	#userPicture {
+		max-width: 200px;
+		padding: 0 3% 10px 0;
+	}
+	#userInfo {
+		overflow: hidden;
+	}
+	#infoParagraph {
+		max-width: 65%;
+	}
+}
+
+@media only screen and (min-width: $bp-large) {
+
 }

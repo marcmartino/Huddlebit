@@ -31,13 +31,61 @@
   vertical-align: middle;
   position: relative;
 }
-/* line 36, ../sass/home.scss */
+/* line 37, ../sass/home.scss */
 #requestTable .name {
   display: none;
 }
-/* line 40, ../sass/home.scss */
+/* line 41, ../sass/home.scss */
 #requestTable .acceptRequest {
   position: absolute;
   top: 5px;
   right: 2%;
+}
+
+@media only screen and (min-width: 35em) {
+  /* line 49, ../sass/home.scss */
+  #userInfo {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+  }
+
+  /* line 54, ../sass/home.scss */
+  #userPicture {
+    padding: 0 2% 10px 0;
+    max-width: 180px;
+  }
+
+  /* line 59, ../sass/home.scss */
+  #requestTable .title {
+    width: 33%;
+    display: inline-block;
+  }
+  /* line 63, ../sass/home.scss */
+  #requestTable .name {
+    width: 33%;
+    display: inline-block;
+  }
+
+  /* line 68, ../sass/home.scss */
+  #infoParagraph {
+    max-width: 85%;
+  }
+}
+@media only screen and (min-width: 46.8em) {
+  /* line 74, ../sass/home.scss */
+  #userPicture {
+    max-width: 200px;
+    padding: 0 3% 10px 0;
+  }
+
+  /* line 78, ../sass/home.scss */
+  #userInfo {
+    overflow: hidden;
+  }
+
+  /* line 81, ../sass/home.scss */
+  #infoParagraph {
+    max-width: 65%;
+  }
 }
