@@ -10,6 +10,11 @@
 }
 
 /* line 11, ../sass/header.scss */
+#signIn {
+  display: none;
+}
+
+/* line 14, ../sass/header.scss */
 header {
   padding: 10px 0 5px;
   margin: auto 1%;
@@ -18,13 +23,9 @@ header {
   border-bottom: 1px solid #e1e4ea;
   margin-bottom: 10px;
 }
-/* line 18, ../sass/header.scss */
+/* line 21, ../sass/header.scss */
 header nav {
   display: inline-block;
-}
-/* line 21, ../sass/header.scss */
-header #signIn {
-  display: none;
 }
 
 /* line 25, ../sass/header.scss */
@@ -74,32 +75,116 @@ header #signIn {
 
 @media only screen and (min-width: 35em) {
   /* line 61, ../sass/header.scss */
-  #logo {
-    float: left;
+  header {
+    padding: 15px 0 5px;
+    margin: auto 2%;
   }
 
-  /* line 64, ../sass/header.scss */
+  /* line 65, ../sass/header.scss */
+  #logo {
+    display: inline-block;
+    margin-bottom: 0;
+  }
+
+  /* line 69, ../sass/header.scss */
   #mobileMenu {
     display: none;
   }
 
-  /* line 67, ../sass/header.scss */
+  /* line 72, ../sass/header.scss */
   header #headerContents {
     max-height: none;
   }
 
-  /* line 70, ../sass/header.scss */
+  /* line 75, ../sass/header.scss */
+  #headerSignIn {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+
+  /* line 80, ../sass/header.scss */
   #headerContents {
+    margin-bottom: -5px;
     background-color: #edecf1;
     width: auto;
+    display: inline-block;
   }
-  /* line 73, ../sass/header.scss */
+  /* line 85, ../sass/header.scss */
   #headerContents nav {
-    float: left;
+    font-size: 1.1em;
+    display: inline-block;
     width: auto;
+    padding: 0;
+    margin-left: 10px;
   }
-  /* line 76, ../sass/header.scss */
+  /* line 91, ../sass/header.scss */
   #headerContents nav > a {
     display: inline-block;
+    padding: 0 5px;
+  }
+}
+@media only screen and (min-width: 46.8em) {
+  /* line 102, ../sass/header.scss */
+  header {
+    margin: auto 3% 10px;
+    padding-bottom: 10px;
+  }
+
+  /* line 108, ../sass/header.scss */
+  #headerContents {
+    margin-bottom: -5px;
+  }
+  /* line 110, ../sass/header.scss */
+  #headerContents #headerSignIn {
+    text-align: right;
+    margin-bottom: 10px;
+  }
+
+  /* line 115, ../sass/header.scss */
+  #signInButton {
+    display: none;
+  }
+
+  /* line 118, ../sass/header.scss */
+  #signIn {
+    display: inline-block;
+  }
+  /* line 120, ../sass/header.scss */
+  #signIn .textfield {
+    max-width: 25%;
+  }
+}
+@media only screen and (min-width: 50em) {
+  /* line 130, ../sass/header.scss */
+  header {
+    margin: auto 5% 15px;
+    padding-top: 35px;
+    padding-bottom: 15px;
+  }
+
+  /* line 138, ../sass/header.scss */
+  #signIn .textfield {
+    max-width: 30%;
+  }
+
+  /* line 145, ../sass/header.scss */
+  #headerContents #headerSignIn {
+    margin-bottom: 15px;
+  }
+  /* line 149, ../sass/header.scss */
+  #headerContents nav {
+    margin-left: 20px;
+  }
+  /* line 152, ../sass/header.scss */
+  #headerContents nav > a {
+    padding: 0 10px;
+  }
+}
+@media only screen and (min-width: 83em) {
+  /* line 160, ../sass/header.scss */
+  header {
+    margin: auto;
+    max-width: 73em;
   }
 }

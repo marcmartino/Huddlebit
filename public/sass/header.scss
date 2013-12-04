@@ -8,6 +8,9 @@
 	margin: auto auto 15px;
 	background-size: contain;
 }
+#signIn {
+	display: none;
+}
 header {
 	padding: 10px 0 5px;
 	margin: auto 1%;
@@ -17,9 +20,6 @@ header {
 	margin-bottom: 10px;
 	nav {
 		display: inline-block;
-	}
-	#signIn {
-		display: none;
 	}
 }
 #headerContents {
@@ -58,8 +58,13 @@ header {
 }
 
 @media only screen and (min-width: $bp-small) {
+	header {
+		padding: 15px 0 5px;
+		margin: auto 2%;
+	}
 	#logo {
-		float: left;
+		display: inline-block;
+		margin-bottom: 0;
 	}
   #mobileMenu {
   	display: none;
@@ -67,15 +72,93 @@ header {
   header #headerContents {
 		max-height: none;
   }
+  #headerSignIn {
+  	position: absolute;
+  	right: 0;
+  	bottom: 0;
+  }
   #headerContents {
+		margin-bottom: -5px;
 		background-color: $grayBackground;
 		width: auto;
+		display: inline-block;
   	nav {
-  		float: left;
+  		font-size: 1.1em;
+  		display: inline-block;
   		width: auto;
+  		padding: 0;
+  		margin-left: 10px;
   		&> a {
   			display: inline-block;
+  			padding: 0 5px;
   		}
   	}
   }
+}
+
+@media only screen and (min-width: $bp-med) {
+	$headerBottomMargin: 10px;
+	$headerBottomPadding: 10px;
+	header {
+		// background-color: $yellow;
+		margin: auto 3% $headerBottomMargin;
+		padding-bottom: $headerBottomPadding;
+	}
+
+	#headerContents {
+		margin-bottom: ($headerBottomPadding - 15);
+		#headerSignIn {
+			text-align: right;
+			margin-bottom: $headerBottomPadding;
+		}
+	}
+	#signInButton {
+		display: none;
+	}
+	#signIn {
+		display: inline-block;
+		.textfield {
+			max-width: 25%;
+		}
+	}
+}
+
+@media only screen and (min-width: $bp-large) {
+	
+	$headerBottomMargin: 15px;
+	$headerBottomPadding: 15px;
+	header {
+		// background-color: $yellow;
+		margin: auto 5% $headerBottomMargin;
+		padding-top: 35px;
+		padding-bottom: $headerBottomPadding;
+	}
+
+	#signIn {
+		.textfield {
+			max-width: 30%;
+		}
+	}
+
+	#headerContents {
+	
+		#headerSignIn {
+	
+			margin-bottom: $headerBottomPadding;
+		}
+		nav {
+  		
+  		margin-left: 20px;
+  		&> a {
+  			padding: 0 10px;
+  		}
+  	}
+	}
+  
+}
+@media only screen and (min-width: $bp-xl) {
+	header {
+		margin: auto;
+		max-width: ($bp-xl - 10);
+	}
 }
