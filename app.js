@@ -46,6 +46,7 @@ function returnMessage(status) {
 
 // development only
 if ('development' == app.get('env')) {
+  console.log("DEVELOPMENT");
   app.use(express.errorHandler());
   app.set('port', process.env.PORT || 3000);
 }
