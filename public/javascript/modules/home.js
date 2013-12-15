@@ -4,6 +4,9 @@ define(['scoreunder', 'jquery'], function () {
 		$("body").html(temp({name: n}));
 	};
 	return {
-		showName: showName
+		showName: showName,
+		start: function () {
+			return "home mod";
+		}
 	}
 });
